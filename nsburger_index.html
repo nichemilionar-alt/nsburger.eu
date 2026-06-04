@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="NS Burger — Moderní bistro & bar v centru Kadaně. Burgery, grily, snídaně, dezerty. Jana Švermy 2, Kadaň.">
+<title>NS Burger — Bistro & Bar | Kadaň</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0f0d0a;
+  --bg1:#181410;
+  --bg2:#221d16;
+  --bg3:#2c261d;
+  --gold:#c8921a;
+  --gold-l:#e5a930;
+  --gold-pale:rgba(200,146,26,.12);
+  --gold-border:rgba(200,146,26,.2);
+  --cream:#f4eadc;
+  --cream2:#b8a28e;
+  --cream3:#6e5e4e;
+  --fd:'Cormorant Garamond',serif;
+  --fb:'DM Sans',sans-serif;
+  --mw:1180px;
+  --r:6px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--bg);color:var(--cream);overflow-x:hidden;line-height:1.6}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+img{display:block;width:100%;object-fit:cover}
+.container{max-width:var(--mw);margin:0 auto;padding:0 28px}
+
+/* ─── NAV ─── */
+#nav{
+  position:fixed;top:0;width:100%;z-index:100;
+  height:62px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 40px;
+  transition:background .35s,border-color .35s;
+  border-bottom:1px solid transparent;
+}
+#nav.scrolled{background:rgba(15,13,10,.96);backdrop-filter:blur(14px);border-color:var(--gold-border)}
+
+.nav-logo{
+  font-family:var(--fd);font-size:1.5rem;font-weight:700;letter-spacing:.04em;
+  text-decoration:none;color:var(--cream);
+}
+.nav-logo span{color:var(--gold)}
+
+.nav-links{display:flex;align-items:center;gap:4px;list-style:none}
+.nav-links a{color:var(--cream2);text-decoration:none;font-size:.82rem;padding:6px 13px;border-radius:4px;letter-spacing:.04em;text-transform:uppercase;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--cream)}
+
+.nav-cta{
+  display:flex;align-items:center;gap:8px;
+  background:var(--gold);color:var(--bg);padding:9px 20px;border-radius:4px;
+  font-size:.8rem;font-weight:600;text-decoration:none;letter-spacing:.06em;text-transform:uppercase;
+  transition:all .2s;
+}
+.nav-cta:hover{background:var(--gold-l);transform:translateY(-1px)}
+
+.nav-mobile-btn{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px}
+.nav-mobile-btn span{width:22px;height:1.5px;background:var(--cream);transition:all .3s}
+
+/* ─── HERO ─── */
+.hero{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;padding:80px 28px 60px;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 40%,rgba(200,146,26,.07) 0%,transparent 60%),
+    radial-gradient(ellipse 40% 40% at 85% 20%,rgba(200,146,26,.04) 0%,transparent 50%);
+}
+.hero-texture{
+  position:absolute;inset:0;
+  background-image:
+    repeating-linear-gradient(0deg,transparent,transparent 59px,rgba(255,255,255,.015) 60px),
+    repeating-linear-gradient(90deg,transparent,transparent 59px,rgba(255,255,255,.015) 60px);
+  mask-image:radial-gradient(ellipse 100% 100% at center,black 30%,transparent 80%);
+}
+.hero-inner{position:relative;z-index:1;text-align:center;max-width:900px}
+
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:14px;
+  font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:28px;font-weight:500;
+}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';width:40px;height:1px;background:var(--gold);opacity:.6}
+
+.hero h1{
+  font-family:var(--fd);
+  font-size:clamp(3.5rem,9vw,7.5rem);
+  font-weight:700;line-height:.95;
+  letter-spacing:-.01em;
+  margin-bottom:14px;
+  color:var(--cream);
+}
+.hero h1 em{color:var(--gold);font-style:italic}
+
+.hero-tagline{
+  font-size:clamp(1rem,2vw,1.2rem);color:var(--cream2);
+  max-width:520px;margin:0 auto 42px;line-height:1.7;font-weight:300;
+}
+
+.hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:72px}
+.btn-gold{
+  display:inline-flex;align-items:center;gap:9px;
+  background:var(--gold);color:var(--bg);padding:14px 28px;border-radius:4px;
+  font-weight:600;font-size:.88rem;text-decoration:none;transition:all .2s;
+  letter-spacing:.04em;text-transform:uppercase;
+}
+.btn-gold:hover{background:var(--gold-l);box-shadow:0 8px 30px rgba(200,146,26,.35);transform:translateY(-2px)}
+.btn-outline{
+  display:inline-flex;align-items:center;gap:9px;
+  background:transparent;color:var(--cream);padding:14px 28px;border-radius:4px;
+  font-weight:500;font-size:.88rem;text-decoration:none;
+  border:1px solid rgba(244,234,220,.2);transition:all .2s;
+  letter-spacing:.04em;text-transform:uppercase;
+}
+.btn-outline:hover{border-color:var(--gold-border);color:var(--gold);transform:translateY(-2px)}
+
+.hero-badges{
+  display:flex;align-items:center;justify-content:center;gap:36px;flex-wrap:wrap;
+  padding-top:36px;border-top:1px solid rgba(255,255,255,.06);
+}
+.hero-badge{text-align:center}
+.badge-val{font-family:var(--fd);font-size:1.8rem;font-weight:700;color:var(--gold-l);line-height:1}
+.badge-lbl{font-size:.68rem;color:var(--cream3);letter-spacing:.1em;text-transform:uppercase;margin-top:4px;font-weight:500}
+
+/* ─── SHARED SECTION STYLES ─── */
+.section{padding:96px 0}
+.section-alt{background:var(--bg1)}
+
+.sec-label{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--gold);font-weight:500;margin-bottom:14px;
+}
+.sec-label::before{content:'';width:24px;height:1px;background:var(--gold)}
+
+.sec-title{
+  font-family:var(--fd);font-size:clamp(2rem,5vw,3.2rem);font-weight:700;
+  line-height:1.1;letter-spacing:-.01em;margin-bottom:14px;max-width:640px;
+}
+.sec-title em{color:var(--gold);font-style:italic}
+.sec-sub{color:var(--cream2);font-size:.97rem;max-width:500px;line-height:1.75;font-weight:300}
+
+/* ─── MENU ─── */
+.menu-tabs{
+  display:flex;gap:4px;margin-bottom:40px;flex-wrap:wrap;
+  border-bottom:1px solid var(--gold-border);padding-bottom:0;
+}
+.menu-tab{
+  padding:12px 22px;font-size:.82rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--cream3);cursor:pointer;border:none;background:none;
+  border-bottom:2px solid transparent;margin-bottom:-1px;
+  transition:all .2s;font-family:var(--fb);
+}
+.menu-tab:hover{color:var(--cream2)}
+.menu-tab.active{color:var(--gold);border-bottom-color:var(--gold)}
+
+.menu-note{
+  display:inline-block;font-size:.72rem;color:var(--cream3);font-style:italic;
+  margin-bottom:28px;padding:6px 14px;background:var(--bg2);border-radius:4px;
+  border:1px solid var(--gold-border);
+}
+
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:2px;background:var(--gold-border);border:1px solid var(--gold-border);border-radius:var(--r);overflow:hidden}
+.menu-item{background:var(--bg1);padding:22px 24px;display:flex;justify-content:space-between;align-items:flex-start;gap:16px;transition:background .2s;cursor:default}
+.menu-item:hover{background:var(--bg2)}
+.mi-left{flex:1}
+.mi-name{font-family:var(--fd);font-size:1.12rem;font-weight:600;color:var(--cream);margin-bottom:5px}
+.mi-desc{font-size:.78rem;color:var(--cream3);line-height:1.55;max-width:36ch}
+.mi-tags{display:flex;gap:5px;margin-top:8px;flex-wrap:wrap}
+.mi-tag{font-size:.58rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);background:var(--gold-pale);border:1px solid var(--gold-border);padding:2px 7px;border-radius:3px;font-weight:600}
+.mi-price{font-family:var(--fd);font-size:1.1rem;font-weight:600;color:var(--gold-l);white-space:nowrap;flex-shrink:0}
+
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+
+/* ─── ABOUT ─── */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.about-img-wrap{position:relative}
+.about-img{
+  aspect-ratio:4/5;background:var(--bg2);border-radius:4px;overflow:hidden;
+  position:relative;
+}
+.about-img-inner{
+  width:100%;height:100%;
+  background:
+    radial-gradient(ellipse at 60% 40%,rgba(200,146,26,.18),transparent 60%),
+    linear-gradient(160deg,#2c2018,#1a1208);
+  display:flex;align-items:center;justify-content:center;
+}
+.about-img-text{font-family:var(--fd);font-size:6rem;font-style:italic;color:rgba(200,146,26,.12);line-height:1}
+.about-img-badge{
+  position:absolute;bottom:24px;right:-20px;
+  background:var(--gold);color:var(--bg);padding:14px 18px;border-radius:4px;
+  text-align:center;
+}
+.about-badge-big{font-family:var(--fd);font-size:2rem;font-weight:700;line-height:1}
+.about-badge-small{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-top:2px}
+
+.about-content .sec-title{max-width:none}
+.about-text{color:var(--cream2);font-size:.94rem;line-height:1.8;font-weight:300;margin-bottom:16px;max-width:52ch}
+
+.about-pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:28px}
+.about-pill{
+  display:flex;align-items:center;gap:7px;padding:8px 14px;
+  background:var(--bg2);border:1px solid var(--gold-border);border-radius:4px;
+  font-size:.78rem;color:var(--cream2);font-weight:500;
+}
+.about-pill-ico{color:var(--gold);font-size:.9rem}
+
+/* ─── HOURS ─── */
+.hours-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.hours-table{width:100%;border-collapse:collapse;margin-top:28px}
+.hours-table tr{border-bottom:1px solid rgba(255,255,255,.04)}
+.hours-table tr:last-child{border:none}
+.hours-table td{padding:11px 0;font-size:.88rem}
+.hours-table td:first-child{color:var(--cream2);font-weight:500}
+.hours-table td:last-child{text-align:right;font-family:'Cormorant Garamond',serif;font-size:.98rem;font-weight:600;color:var(--cream)}
+.hours-table tr.today td:first-child{color:var(--gold)}
+.hours-table tr.today td:last-child{color:var(--gold-l)}
+.closed{color:var(--cream3) !important;font-style:italic}
+
+.special-hours{display:flex;flex-direction:column;gap:14px;margin-top:28px}
+.spec-card{
+  background:var(--bg2);border:1px solid var(--gold-border);border-radius:var(--r);
+  padding:18px 22px;display:flex;align-items:center;gap:18px;
+}
+.spec-icon{font-size:1.4rem;flex-shrink:0}
+.spec-name{font-family:var(--fd);font-size:1.05rem;font-weight:600;color:var(--cream);margin-bottom:3px}
+.spec-time{font-size:.8rem;color:var(--gold-l);font-weight:600;letter-spacing:.04em}
+.spec-days{font-size:.74rem;color:var(--cream3);margin-top:2px}
+
+/* ─── REVIEWS ─── */
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:52px}
+.review-card{
+  background:var(--bg1);border:1px solid var(--gold-border);border-radius:var(--r);
+  padding:26px;transition:all .2s;position:relative;overflow:hidden;
+}
+.review-card::before{
+  content:'"';position:absolute;top:-10px;right:16px;
+  font-family:var(--fd);font-size:7rem;color:rgba(200,146,26,.07);line-height:1;
+  pointer-events:none;
+}
+.review-card:hover{border-color:rgba(200,146,26,.4);background:var(--bg2)}
+.review-stars{display:flex;gap:3px;margin-bottom:14px}
+.review-stars span{color:var(--gold);font-size:.85rem}
+.review-text{
+  font-family:var(--fd);font-size:1.02rem;color:var(--cream);line-height:1.65;
+  font-style:italic;margin-bottom:18px;
+}
+.review-author{display:flex;align-items:center;gap:10px}
+.review-avatar{
+  width:34px;height:34px;border-radius:50%;background:var(--bg3);border:1px solid var(--gold-border);
+  display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;
+}
+.review-name{font-size:.8rem;font-weight:600;color:var(--cream2);line-height:1.2}
+.review-when{font-size:.7rem;color:var(--cream3)}
+
+/* ─── CONTACT ─── */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.contact-items{display:flex;flex-direction:column;gap:0;margin-top:32px}
+.contact-item{
+  display:flex;align-items:flex-start;gap:18px;padding:22px 0;
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
+.contact-item:last-child{border:none}
+.ci-icon{
+  width:40px;height:40px;background:var(--gold-pale);border:1px solid var(--gold-border);
+  border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;
+}
+.ci-label{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--cream3);font-weight:600;margin-bottom:4px}
+.ci-val{color:var(--cream);font-size:.94rem;font-weight:400}
+.ci-val a{color:var(--cream);text-decoration:none;transition:color .2s}
+.ci-val a:hover{color:var(--gold-l)}
+
+.map-wrap{
+  background:var(--bg2);border:1px solid var(--gold-border);border-radius:var(--r);
+  overflow:hidden;margin-top:32px;
+}
+.map-placeholder{
+  aspect-ratio:4/3;background:linear-gradient(145deg,#1e1a13,#2a2318);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;
+  position:relative;overflow:hidden;
+}
+.map-placeholder::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    repeating-linear-gradient(0deg,transparent,transparent 29px,rgba(200,146,26,.04) 30px),
+    repeating-linear-gradient(90deg,transparent,transparent 29px,rgba(200,146,26,.04) 30px);
+}
+.map-pin{font-size:2.5rem;position:relative;z-index:1}
+.map-addr{font-family:var(--fd);font-size:1.1rem;color:var(--cream);text-align:center;position:relative;z-index:1;font-weight:600}
+.map-sub{font-size:.78rem;color:var(--cream3);text-align:center;position:relative;z-index:1}
+.map-btn{
+  display:inline-flex;align-items:center;gap:8px;margin-top:4px;
+  background:var(--gold);color:var(--bg);padding:10px 20px;border-radius:4px;
+  font-size:.78rem;font-weight:600;text-decoration:none;letter-spacing:.05em;text-transform:uppercase;
+  transition:all .2s;position:relative;z-index:1;
+}
+.map-btn:hover{background:var(--gold-l)}
+
+.iframe-map{width:100%;height:260px;border:none;filter:sepia(.3) saturate(.8) brightness(.7)}
+
+/* ─── FOOTER ─── */
+footer{
+  background:var(--bg);border-top:1px solid var(--gold-border);
+  padding:48px 0 32px;
+}
+.footer-top{
+  display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:60px;margin-bottom:48px;
+  padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.05);
+}
+.footer-brand{font-family:var(--fd);font-size:1.6rem;font-weight:700;color:var(--cream);margin-bottom:12px}
+.footer-brand span{color:var(--gold)}
+.footer-desc{font-size:.82rem;color:var(--cream3);line-height:1.7;max-width:26ch;font-weight:300}
+.footer-social{display:flex;gap:10px;margin-top:18px}
+.social-btn{
+  width:36px;height:36px;border:1px solid var(--gold-border);border-radius:4px;
+  display:flex;align-items:center;justify-content:center;font-size:.9rem;
+  color:var(--cream3);text-decoration:none;transition:all .2s;
+}
+.social-btn:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-pale)}
+.footer-col h4{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:16px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.footer-col ul li a{font-size:.84rem;color:var(--cream3);text-decoration:none;transition:color .2s}
+.footer-col ul li a:hover{color:var(--cream2)}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.footer-copy{font-size:.74rem;color:var(--cream3)}
+
+/* ─── BACK TO TOP ─── */
+#btt{
+  position:fixed;bottom:28px;right:28px;z-index:99;
+  width:40px;height:40px;background:var(--gold);color:var(--bg);border:none;
+  border-radius:4px;cursor:pointer;font-size:.9rem;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:all .25s;
+}
+#btt.visible{opacity:1;pointer-events:auto}
+#btt:hover{background:var(--gold-l);transform:translateY(-2px)}
+
+/* ─── DIVIDER ─── */
+.divider{display:flex;align-items:center;gap:14px;margin:0 auto;max-width:320px;padding:0 0 60px}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--gold-border)}
+.divider span{font-size:.8rem;color:var(--gold);letter-spacing:.12em}
+
+/* ─── MOBILE NAV ─── */
+.mobile-nav{
+  position:fixed;inset:0;z-index:99;background:rgba(15,13,10,.98);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;
+  opacity:0;pointer-events:none;transition:opacity .3s;
+}
+.mobile-nav.open{opacity:1;pointer-events:auto}
+.mobile-nav a{font-family:var(--fd);font-size:2.2rem;font-weight:600;color:var(--cream);text-decoration:none;letter-spacing:.02em;transition:color .2s}
+.mobile-nav a:hover{color:var(--gold)}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:960px){
+  .about-grid,.hours-grid,.contact-grid{grid-template-columns:1fr;gap:40px}
+  .reviews-grid{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr 1fr;gap:40px}
+  .about-img-badge{right:0}
+}
+@media(max-width:700px){
+  .nav-links,.nav-cta{display:none}
+  .nav-mobile-btn{display:flex}
+  .menu-grid{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr}
+  #nav{padding:0 20px}
+  .container{padding:0 18px}
+  .hero h1{letter-spacing:-.02em}
+  .hero-badges{gap:20px}
+}
+
+/* ─── SCROLL REVEAL ─── */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .6s,transform .6s}
+.reveal.visible{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">NS <span>Burger</span></a>
+  <ul class="nav-links">
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#o-nas">O nás</a></li>
+    <li><a href="#hodiny">Hodiny</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+  <a href="tel:+420732112588" class="nav-cta">Rezervace</a>
+  <div class="nav-mobile-btn" id="mob-btn"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mob-nav">
+  <a href="#menu" class="mob-close">Menu</a>
+  <a href="#o-nas" class="mob-close">O nás</a>
+  <a href="#hodiny" class="mob-close">Hodiny</a>
+  <a href="#kontakt" class="mob-close">Kontakt</a>
+  <a href="tel:+420732112588" style="color:var(--gold);font-family:var(--fd);font-size:1.4rem">+420 732 112 588</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-texture"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Bistro &amp; Bar — Kadaň</div>
+    <h1>Skvělé jídlo,<br><em>dobrá nálada.</em></h1>
+    <p class="hero-tagline">Poctivé burgery, grilovaná masa, snídaně a domácí dezerty. Vše z čerstvých surovin, přímo v centru Kadaně.</p>
+    <div class="hero-actions">
+      <a href="#menu" class="btn-gold">Zobrazit menu</a>
+      <a href="#kontakt" class="btn-outline">Najít nás</a>
+    </div>
+    <div class="hero-badges">
+      <div class="hero-badge">
+        <div class="badge-val">4.7</div>
+        <div class="badge-lbl">Hodnocení</div>
+      </div>
+      <div class="hero-badge">
+        <div class="badge-val">500+</div>
+        <div class="badge-lbl">Recenzí</div>
+      </div>
+      <div class="hero-badge">
+        <div class="badge-val">100%</div>
+        <div class="badge-lbl">Doporučení</div>
+      </div>
+      <div class="hero-badge">
+        <div class="badge-val">#1</div>
+        <div class="badge-lbl">Bar v Kadani</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="section" id="menu">
+  <div class="container">
+    <div class="reveal">
+      <div class="sec-label">Jídelní lístek</div>
+      <h2 class="sec-title">Vyberte si<br><em>co vám chutná</em></h2>
+    </div>
+
+    <div class="menu-tabs reveal">
+      <button class="menu-tab active" data-tab="burgery">Burgery</button>
+      <button class="menu-tab" data-tab="grily">Grily &amp; Masa</button>
+      <button class="menu-tab" data-tab="snidane">Snídaně</button>
+      <button class="menu-tab" data-tab="salaty">Saláty &amp; Přílohy</button>
+      <button class="menu-tab" data-tab="dezerty">Dezerty</button>
+      <button class="menu-tab" data-tab="drinky">Drinky</button>
+    </div>
+
+    <!-- BURGERY -->
+    <div class="tab-pane active" id="tab-burgery">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="mi-left">
+            <div class="mi-name">NS Classic</div>
+            <div class="mi-desc">Hovězí patty, cheddar, ledový salát, rajče, okurka, NS omáčka</div>
+            <div class="mi-tags"><span class="mi-tag">Bestseller</span></div>
+          </div>
+          <div class="mi-price">189 Kč</div>
+        </div>
+        <div class="menu-item">
+          <div class="mi-left">
+            <div class="mi-name">BBQ Smoky</div>
+            <div class="mi-desc">Hovězí patty, uzená slanina, BBQ omáčka, cibulové kroužky, cheddar</div>
+            <div class="mi-tags"><span class="mi-tag">Oblíbený</span></div>
+          </div>
+          <div class="mi-price">219 Kč</div>
+        </div>
+        <div class="menu-item">
+          <div class="mi-left">
+            <div class="mi-name">Crispy Chicken</div>
+            <div class="mi-desc">Křupavé kuřecí stehno, coleslaw, jalapeño mayo, nakládané okurky</div>
+          </div>
+          <div class="mi-price">199 Kč</div>
+        </div>
+        <div class="menu-item">
+          <div class="mi-left">
+            <div class="mi-name">Double Trouble</div>
+            <div class="mi-desc">Dvojitý hovězí patty, dvojitý cheddar, karamelizovaná cibulka, dijonská hořčice</div>
+            <div class="mi-tags"><span class="mi-tag">Výzva</span></div>
+          </div>
+          <div class="mi-price">239 Kč</div>
+        </div>
+        <div class="menu-item">
+          <div class="mi-left">
+            <div class="mi-name">Mushroom Swiss</div>
+            <div class="mi-desc">Hovězí patty, grilované žampiony, švýcarský sýr, bylinkové máslo</div>
+          </div>
+          <div class="mi-price">209 Kč</div>
+        </div>
+        <div class="menu-item">
+          <div class="mi-left">
+            <div class="mi-name">Veggie Burger</div>
+            <div class="mi-desc">Čočkový patty, avokádo, cherry rajčata, pesto mayo, rukola</div>
+            <div class="mi-tags"><span class="mi-tag">Veg</span></div>
+          </div>
+          <div class="mi-price">189 Kč</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GRILY -->
+    <div class="tab-pane" id="tab-grily">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="mi-left">
+            <div class="mi-name">Kuřecí paličky BBQ</div>
+            <div class="mi-desc">4 kuřecí paličky, domácí BBQ omáčka, pečená brambora, česnekový dip</div>
+          </div>
+          <div class="mi-price">169 Kč</div>
+        </div>
+        <div class="menu-item">
+          <div class="mi-left">
+            <div class="mi-name">Rump Steak 200g</div>
+            <div class="mi-desc">Hovězí rump steak, americké brambory, bylinkové máslo, salát</div>
+            <div class="mi-tags"><span class="mi-tag">Specialita</span></div>
+          </div>
+          <div class="mi-price">299 Kč</div>
+        </div>
+        <div class="menu-item">
+          <div class="mi-left">
+            <div class="mi-name">Grilovaná žebra 400g</div>
+            <div class="mi-desc">Vepřová žebra, domácí BBQ, coleslaw, pečivo</div>
+          </div>
+          <div class="mi-price">269 Kč</div>
+        </div>
+        <div class="menu-item">
+          <div class="mi-left">
+            <div class="mi-name">Kuřecí stehno na grilu</div>
+            <div class="mi-desc">Marinované kuřecí stehno, grilovaná zelenina, tatarská omáčka</div>
+          </div>
+          <div class="mi-price">179 Kč</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SNÍDANĚ -->
+    <div class="tab-pane" id="tab-snidane">
+      <span class="menu-note">☕ Snídaně se podávají pondělí – pátek od 9:00 do 11:00</span>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="mi-left">
+            <div class="mi-name">Americká snídaně</div>
+            <div class="mi-desc">Volská oka, uzená slanina, opečený toast, rajče, fazole</div>
+          </div>
+          <div class="mi-price">149 Kč</div>
+        </div>
+        <div class="menu-item">
+          <div class="mi-left">
+            <div class="mi-name">Lívance s ovocem</div>
+            <div class="mi-desc">Domácí lívance, lesní ovoce, šlehačka, javorový sirup</div>
+            <div class="mi-tags"><span class="mi-tag">Oblíbený</span></div>
+          </div>
+          <div class="mi-price">119 Kč</div>
+        </div>
+        <div class="menu-item">
+          <div class="mi-left">
+            <div class="mi-name">Avokádový toast</div>
+            <div class="mi-desc">Celozrnný toast, avokádo, pošírované vejce, cherry rajčata, semínka</div>
+          </div>
+          <div class="mi-price">129 Kč</div>
+        </div>
+        <div class="menu-item">
+          <div class="mi-left">
+            <div class="mi-name">Míchaná vajíčka</div>
+            <div class="mi-desc">Jemně míchaná vajíčka, máslo, tousty, čerstvé byliny</div>
+          </div>
+          <div class="mi-price">99 Kč</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SALÁTY -->
+    <div class="tab-pane" id="tab-salaty">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="mi-left">
+            <div class="mi-name">Caesar salát</div>
+            <div class="mi-desc">Římský salát, kuřecí prso, parmazán, krutonky, Caesar dressing</div>
+          </div>
+          <div class="mi-price">159 Kč</div>
+        </div>
+        <div class="menu-item">
+          <div class="mi-left">
+            <div class="mi-name">Americké brambory</div>
+            <div class="mi-desc">Křupavé hranolky s kůží, studená omáčka dle výběru</div>
+          </div>
+          <div class="mi-price">59 Kč</div>
+        </div>
+        <div class="menu-item">
+          <div class="mi-left">
+            <div class="mi-name">Sladké brambory</div>
+            <div class="mi-desc">Batátové hranolky, chili mayo</div>
+          </div>
+          <div class="mi-price">69 Kč</div>
+        </div>
+        <div class="menu-item">
+          <div class="mi-left">
+            <div class="mi-name">Coleslaw</div>
+            <div class="mi-desc">Domácí zelný salát s mrkví, jemný dresink</div>
+          </div>
+          <div class="mi-price">45 Kč</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DEZERTY -->
+    <div class="tab-pane" id="tab-dezerty">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="mi-left">
+            <div class="mi-name">Míšadort</div>
+            <div class="mi-desc">Originální recept, čokoládový dortík s vanilkovým krémem</div>
+            <div class="mi-tags"><span class="mi-tag">Originál NS</span></div>
+          </div>
+          <div class="mi-price">79 Kč</div>
+        </div>
+        <div class="menu-item">
+          <div class="mi-left">
+            <div class="mi-name">New York Cheesecake</div>
+            <div class="mi-desc">Krémový tvarohový dort, coulis z lesního ovoce</div>
+          </div>
+          <div class="mi-price">89 Kč</div>
+        </div>
+        <div class="menu-item">
+          <div class="mi-left">
+            <div class="mi-name">Churros s čokoládou</div>
+            <div class="mi-desc">Smažené churros, horká čokoláda na máčení, skořice</div>
+          </div>
+          <div class="mi-price">89 Kč</div>
+        </div>
+        <div class="menu-item">
+          <div class="mi-left">
+            <div class="mi-name">Palačinky</div>
+            <div class="mi-desc">Tenké palačinky, Nutella nebo džem, šlehačka</div>
+          </div>
+          <div class="mi-price">95 Kč</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DRINKY -->
+    <div class="tab-pane" id="tab-drinky">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="mi-left">
+            <div class="mi-name">Domácí limonáda</div>
+            <div class="mi-desc">Čerstvě vymačkaná, příchutě: citron, jahoda, máta, maracuja</div>
+          </div>
+          <div class="mi-price">69 Kč</div>
+        </div>
+        <div class="menu-item">
+          <div class="mi-left">
+            <div class="mi-name">Ledová káva</div>
+            <div class="mi-desc">Silná káva, mléko, led, šlehačka — osvěžení v každém počasí</div>
+            <div class="mi-tags"><span class="mi-tag">Fenomenální</span></div>
+          </div>
+          <div class="mi-price">79 Kč</div>
+        </div>
+        <div class="menu-item">
+          <div class="mi-left">
+            <div class="mi-name">Točené pivo</div>
+            <div class="mi-desc">Čepované pivo z vybraných českých pivovarů, malé / velké</div>
+          </div>
+          <div class="mi-price">45 / 59 Kč</div>
+        </div>
+        <div class="menu-item">
+          <div class="mi-left">
+            <div class="mi-name">Milk Shake</div>
+            <div class="mi-desc">Vanilka, čokoláda nebo jahoda — hustý, poctivý</div>
+          </div>
+          <div class="mi-price">89 Kč</div>
+        </div>
+        <div class="menu-item">
+          <div class="mi-left">
+            <div class="mi-name">Espresso / Flat White</div>
+            <div class="mi-desc">Kvalitní výběrová káva, různé přípravy</div>
+          </div>
+          <div class="mi-price">od 55 Kč</div>
+        </div>
+        <div class="menu-item">
+          <div class="mi-left">
+            <div class="mi-name">Nealkoholické nápoje</div>
+            <div class="mi-desc">Coca-Cola, Sprite, Fanta, džusy, minerální voda</div>
+          </div>
+          <div class="mi-price">od 39 Kč</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section section-alt" id="o-nas">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img-wrap reveal">
+        <div class="about-img">
+          <div class="about-img-inner">
+            <div class="about-img-text">NS</div>
+          </div>
+        </div>
+        <div class="about-img-badge">
+          <div class="about-badge-big">2020</div>
+          <div class="about-badge-small">Otevřeno</div>
+        </div>
+      </div>
+      <div class="about-content reveal">
+        <div class="sec-label">Náš příběh</div>
+        <h2 class="sec-title">Moderní bistro<br><em>v srdci Kadaně</em></h2>
+        <p class="about-text">Jsme mladý tým, kterému záleží na tom, co dáváme na talíř. NS Burger vznikl s jednoduchou myšlenkou — dělat poctivé jídlo z čerstvých surovin, v příjemném prostředí a bez zbytečného zdražování.</p>
+        <p class="about-text">Od snídaní přes poctivé burgery a grilovaná masa až po domácí dezerty. Najdete nás přímo na náměstí, s terasou a místy pro každou příležitost — oběd s kolegy, rodinná večeře nebo jen tak na pivo.</p>
+        <div class="about-pills">
+          <div class="about-pill"><span class="about-pill-ico">🥩</span>Čerstvé suroviny</div>
+          <div class="about-pill"><span class="about-pill-ico">🍺</span>Výběr piv</div>
+          <div class="about-pill"><span class="about-pill-ico">☀️</span>Venkovní terasa</div>
+          <div class="about-pill"><span class="about-pill-ico">♿</span>Bezbariérový přístup</div>
+          <div class="about-pill"><span class="about-pill-ico">💳</span>Platba kartou</div>
+          <div class="about-pill"><span class="about-pill-ico">🛍️</span>Jídlo s sebou</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOURS -->
+<section class="section" id="hodiny">
+  <div class="container">
+    <div class="hours-grid">
+      <div class="reveal">
+        <div class="sec-label">Otevírací doba</div>
+        <h2 class="sec-title">Kdy nás<br><em>najdete otevřené</em></h2>
+        <table class="hours-table">
+          <tr>
+            <td>Pondělí</td><td>9:00 — 21:00</td>
+          </tr>
+          <tr>
+            <td>Úterý</td><td>9:00 — 21:00</td>
+          </tr>
+          <tr>
+            <td>Středa</td><td>9:00 — 21:00</td>
+          </tr>
+          <tr>
+            <td>Čtvrtek</td><td>9:00 — 21:00</td>
+          </tr>
+          <tr>
+            <td>Pátek</td><td>9:00 — 22:00</td>
+          </tr>
+          <tr>
+            <td>Sobota</td><td>10:00 — 22:00</td>
+          </tr>
+          <tr>
+            <td>Neděle</td><td>12:00 — 20:00</td>
+          </tr>
+        </table>
+      </div>
+      <div class="reveal">
+        <div class="sec-label">Speciální hodiny</div>
+        <h2 class="sec-title">Snídaně<br><em>&amp; Obědy</em></h2>
+        <div class="special-hours">
+          <div class="spec-card">
+            <div class="spec-icon">☕</div>
+            <div>
+              <div class="spec-name">Snídaňové menu</div>
+              <div class="spec-time">9:00 — 11:00</div>
+              <div class="spec-days">Pondělí až pátek</div>
+            </div>
+          </div>
+          <div class="spec-card">
+            <div class="spec-icon">🍽️</div>
+            <div>
+              <div class="spec-name">Polední menu</div>
+              <div class="spec-time">11:00 — 14:00</div>
+              <div class="spec-days">Pondělí až pátek</div>
+            </div>
+          </div>
+          <div class="spec-card">
+            <div class="spec-icon">📞</div>
+            <div>
+              <div class="spec-name">Rezervace stolu</div>
+              <div class="spec-time">+420 732 112 588</div>
+              <div class="spec-days">Doporučujeme o víkendech</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="section section-alt">
+  <div class="container">
+    <div style="text-align:center" class="reveal">
+      <div class="sec-label" style="justify-content:center">Recenze</div>
+      <h2 class="sec-title" style="max-width:none;text-align:center">Co říkají <em>hosté</em></h2>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card reveal">
+        <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <div class="review-text">Restaurace na velmi pěkném místě na náměstí. Obsluha velmi milá a příjemná. Jídlo vynikající, škoda že to máme z ruky — ale jistě se sem rádi vrátíme.</div>
+        <div class="review-author">
+          <div class="review-avatar">👩</div>
+          <div>
+            <div class="review-name">Barbora Dvořáková</div>
+            <div class="review-when">Google · ⭐⭐⭐⭐⭐</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <div class="review-text">Já vlastně nevím jestli tenhle podnik doporučit. Pokud máte závislost na dobrém jídle, tam sem nechoďte — protože to budete chtít jíst furt.</div>
+        <div class="review-author">
+          <div class="review-avatar">👨</div>
+          <div>
+            <div class="review-name">Recenzent Google</div>
+            <div class="review-when">Google · ⭐⭐⭐⭐⭐</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <div class="review-text">Fenomenální ledová káva a originálně řešený Míšadort. Paní v obsluze velmi milá. Kdybychom to neměli tak daleko, vrátíme se zas.</div>
+        <div class="review-author">
+          <div class="review-avatar">👩</div>
+          <div>
+            <div class="review-name">Návštěvník</div>
+            <div class="review-when">Google · ⭐⭐⭐⭐⭐</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="kontakt">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="sec-label">Kontakt</div>
+        <h2 class="sec-title">Přijďte nás<br><em>navštívit</em></h2>
+        <div class="contact-items">
+          <div class="contact-item">
+            <div class="ci-icon">📍</div>
+            <div>
+              <div class="ci-label">Adresa</div>
+              <div class="ci-val">Jana Švermy 2, Kadaň<br><span style="color:var(--cream3);font-size:.82rem">Centrum města, přímo na náměstí</span></div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-icon">📞</div>
+            <div>
+              <div class="ci-label">Telefon</div>
+              <div class="ci-val"><a href="tel:+420732112588">+420 732 112 588</a></div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-icon">✉️</div>
+            <div>
+              <div class="ci-label">E-mail</div>
+              <div class="ci-val"><a href="mailto:info@nsburger.eu">info@nsburger.eu</a></div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-icon">📸</div>
+            <div>
+              <div class="ci-label">Instagram</div>
+              <div class="ci-val"><a href="https://instagram.com/nsburgerkadan" target="_blank">@nsburgerkadan</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="sec-label">Kde nás najdete</div>
+        <h2 class="sec-title">Na <em>mapě</em></h2>
+        <div class="map-wrap">
+          <iframe
+            class="iframe-map"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2559.9!2d13.27!3d50.37!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sJana+%C5%A0vermy+2%2C+Kada%C5%88!5e0!3m2!1scs!2scz!4v1"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="NS Burger mapa">
+          </iframe>
+          <div style="padding:14px 18px;background:var(--bg2);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
+            <div>
+              <div style="font-size:.78rem;color:var(--cream2);font-weight:500">Jana Švermy 2, Kadaň</div>
+              <div style="font-size:.72rem;color:var(--cream3);margin-top:2px">Centrum — snadné parkování</div>
+            </div>
+            <a href="https://maps.google.com/?q=Jana+Švermy+2,+Kadaň" target="_blank" class="btn-gold" style="font-size:.75rem;padding:9px 16px">Navigovat →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">NS <span>Burger</span></div>
+        <div class="footer-desc">Moderní bistro &amp; bar v centru Kadaně. Čerstvé suroviny, poctivé burgery, skvělá atmosféra.</div>
+        <div class="footer-social">
+          <a href="https://instagram.com/nsburgerkadan" target="_blank" class="social-btn" title="Instagram">📸</a>
+          <a href="https://facebook.com/nsburgerkadan" target="_blank" class="social-btn" title="Facebook">📘</a>
+          <a href="mailto:info@nsburger.eu" class="social-btn" title="E-mail">✉️</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Nabídka</h4>
+        <ul>
+          <li><a href="#menu">Burgery</a></li>
+          <li><a href="#menu">Grily &amp; Masa</a></li>
+          <li><a href="#menu">Snídaně</a></li>
+          <li><a href="#menu">Dezerty</a></li>
+          <li><a href="#menu">Drinky</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Informace</h4>
+        <ul>
+          <li><a href="#o-nas">O nás</a></li>
+          <li><a href="#hodiny">Otevírací doba</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+          <li><a href="tel:+420732112588">Rezervace</a></li>
+          <li><a href="https://instagram.com/nsburgerkadan" target="_blank">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2024 NS Burger — Bistro &amp; Bar Kadaň · Jana Švermy 2</div>
+      <div class="footer-copy">info@nsburger.eu · +420 732 112 588</div>
+    </div>
+  </div>
+</footer>
+
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+  document.getElementById('btt').classList.toggle('visible', window.scrollY > 400);
+  // Highlight today
+  const d = new Date().getDay(); // 0=Sun,1=Mon...
+  const rows = document.querySelectorAll('.hours-table tr');
+  const map = {1:0,2:1,3:2,4:3,5:4,6:5,0:6};
+  if (rows[map[d]]) rows[map[d]].classList.add('today');
+});
+
+// Mobile nav
+const mobBtn = document.getElementById('mob-btn');
+const mobNav = document.getElementById('mob-nav');
+mobBtn.addEventListener('click', () => mobNav.classList.toggle('open'));
+document.querySelectorAll('.mob-close').forEach(a => {
+  a.addEventListener('click', () => mobNav.classList.remove('open'));
+});
+
+// Menu tabs
+document.querySelectorAll('.menu-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+  });
+});
+
+// Scroll reveal
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+      revealObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+</script>
+</body>
+</html>
